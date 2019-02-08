@@ -22,6 +22,6 @@ public class RNAndroidPipModule extends ReactContextBaseJavaModule {
 
   @ReactMethod
   public void enterPictureInPictureMode() {
-    getCurrentActivity().enterPictureInPictureMode();
+    mCurrentActivity.enterPictureInPictureMode();
   }
 }
