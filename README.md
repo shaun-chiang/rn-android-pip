@@ -3,6 +3,12 @@
 
 ## Getting started
 
+Ensure that Android SDK > 24 and include in your AndroidManifest.xml activity:
+
+`android:resizeableActivity="true"
+android:supportsPictureInPicture="true"
+android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale|layoutDirection|fontScale|screenLayout|density|smallestScreenSize|orientation"`
+
 `$ npm install react-native-android-pip --save`
 
 ### Mostly automatic installation
@@ -30,9 +36,8 @@
 
 ## Usage
 ```javascript
-import RNAndroidPip from 'react-native-android-pip';
+import AndroidPip from 'react-native-android-pip';
 
-// TODO: What to do with the module?
-RNAndroidPip;
+AndroidPip.enterPictureInPictureMode()
 ```
   
