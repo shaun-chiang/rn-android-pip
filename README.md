@@ -1,5 +1,5 @@
 
-# react-native-android-pip (WIP)
+# react-native-android-pip
 
 ## Getting started
 
