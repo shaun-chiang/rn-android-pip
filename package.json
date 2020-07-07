@@ -1,6 +1,6 @@
 {
   "name": "react-native-android-pip",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "repository": {
     "type": "git",
     "url": "https://github.com/shaun-chiang/rn-android-pip"

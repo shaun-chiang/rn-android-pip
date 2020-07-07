@@ -48,6 +48,17 @@ For android sdk version 23 and below, this method call will be ignored as PIP su
 ```javascript
 import AndroidPip from 'react-native-android-pip';
 
-AndroidPip.enterPictureInPictureMode()
+
+// Enter Pip mode
+AndroidPip.enterPictureInPictureMode() 
+
+//Configure aspect ratio, works only on SDK version 26 and above
+AndroidPip.configureAspectRatio(width, height) 
+
+
+// When enabled, PIP mode will be automatically entered when app is unfocused( User presses home, menu button etc)
+AndroidPip.enableAutoPipSwitch()
+AndroidPip.disableAutoPipSwitch()
+
 ```
   
