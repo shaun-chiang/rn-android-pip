@@ -33,7 +33,6 @@ public class RNAndroidPipModule extends ReactContextBaseJavaModule implements Li
             isCustomAspectRatioSupported = true;
             aspectRatio = new Rational(ASPECT_WIDTH, ASPECT_HEIGHT);
         }
-
     }
 
     @Override
@@ -46,8 +45,7 @@ public class RNAndroidPipModule extends ReactContextBaseJavaModule implements Li
         if (isPipSupported) {
             if (isCustomAspectRatioSupported) {
                 PictureInPictureParams params = new PictureInPictureParams.Builder()
-                        .
-                        .setAspectRatio(this.aspectRatio).
+                        .setAspectRatio(this.aspectRatio).build();
                 getCurrentActivity().enterPictureInPictureMode(params);
             } else
                 getCurrentActivity().enterPictureInPictureMode();
