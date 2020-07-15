@@ -1,19 +1,27 @@
 
 # react-native-android-pip
 
-## Getting started
 
-Ensure that Android SDK > 24 and include in your AndroidManifest.xml activity:
+## Getting Started
+
+`$ npm install react-native-android-pip --save`
+
+
+Include in your AndroidManifest.xml in MainActivity activity:
 
 `android:resizeableActivity="true"
 android:supportsPictureInPicture="true"
 android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale|layoutDirection|fontScale|screenLayout|density|smallestScreenSize|orientation"`
 
-`$ npm install react-native-android-pip --save`
 
-### Mostly automatic installation
+```
+# RN >= 0.60
+No action needed
 
-`$ react-native link react-native-android-pip`
+# RN < 0.60
+react-native link react-native-android-pip
+```
+
 
 ### Manual installation
 
@@ -35,9 +43,22 @@ android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale|lay
 
 
 ## Usage
+For android sdk version 23 and below, this method call will be ignored as PIP support is not available
+
 ```javascript
 import AndroidPip from 'react-native-android-pip';
 
-AndroidPip.enterPictureInPictureMode()
+
+// Enter Pip mode
+AndroidPip.enterPictureInPictureMode() 
+
+//Configure aspect ratio, works only on SDK version 26 and above
+AndroidPip.configureAspectRatio(width, height) 
+
+
+// When enabled, PIP mode will be automatically entered when app is unfocused( User presses home, menu button etc)
+AndroidPip.enableAutoPipSwitch()
+AndroidPip.disableAutoPipSwitch()
+
 ```
   
