@@ -12,6 +12,12 @@ import android.app.PictureInPictureParams;
 import android.os.Build;
 import android.util.Rational;
 
+import android.app.AppOpsManager;
+import android.content.Context;
+import android.os.Process;
+
+import com.facebook.react.bridge.Promise;
+
 public class RNAndroidPipModule extends ReactContextBaseJavaModule implements LifecycleEventListener {
 
     private final ReactApplicationContext reactContext;
@@ -43,13 +49,37 @@ public class RNAndroidPipModule extends ReactContextBaseJavaModule implements Li
     @ReactMethod
     public void enterPictureInPictureMode() {
         if (isPipSupported) {
-            if (isCustomAspectRatioSupported) {
-                PictureInPictureParams params = new PictureInPictureParams.Builder()
-                        .setAspectRatio(this.aspectRatio).build();
-                getCurrentActivity().enterPictureInPictureMode(params);
-            } else
-                getCurrentActivity().enterPictureInPictureMode();
+            AppOpsManager manager = (AppOpsManager) reactContext.getSystemService(Context.APP_OPS_SERVICE);
+            if (manager != null) {
+                int modeAllowed = manager.checkOpNoThrow(AppOpsManager.OPSTR_PICTURE_IN_PICTURE, Process.myUid(),
+                    reactContext.getPackageName());
+
+                if (modeAllowed == AppOpsManager.MODE_ALLOWED) {
+                    if (isCustomAspectRatioSupported) {
+                        PictureInPictureParams params = new PictureInPictureParams.Builder()
+                                .setAspectRatio(this.aspectRatio).build();
+                        getCurrentActivity().enterPictureInPictureMode(params);
+                    } else {
+                        getCurrentActivity().enterPictureInPictureMode();
+                    }
+                }
+            }
         }
+    }
+    
+    @ReactMethod
+    public boolean hasSpecialPipPermission(final Promise promise) {
+        AppOpsManager manager = (AppOpsManager) reactContext.getSystemService(Context.APP_OPS_SERVICE);
+        if (manager != null) {
+            int modeAllowed = manager.checkOpNoThrow(AppOpsManager.OPSTR_PICTURE_IN_PICTURE, Process.myUid(),
+                    reactContext.getPackageName());
+
+            if (modeAllowed == AppOpsManager.MODE_ALLOWED) {
+                promise.resolve("Permission enabled");
+                return;
+            }
+        }
+        promise.reject("Permission not enabled");
     }
 
     @ReactMethod
