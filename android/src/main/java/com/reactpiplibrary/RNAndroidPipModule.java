@@ -68,7 +68,7 @@ public class RNAndroidPipModule extends ReactContextBaseJavaModule implements Li
     }
     
     @ReactMethod
-    public boolean hasSpecialPipPermission(final Promise promise) {
+    public void hasSpecialPipPermission(final Promise promise) {
         AppOpsManager manager = (AppOpsManager) reactContext.getSystemService(Context.APP_OPS_SERVICE);
         if (manager != null) {
             int modeAllowed = manager.checkOpNoThrow(AppOpsManager.OPSTR_PICTURE_IN_PICTURE, Process.myUid(),
