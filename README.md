@@ -53,7 +53,7 @@ import AndroidPip from 'react-native-android-pip';
 AndroidPip.enterPictureInPictureMode() 
 
 //Configure aspect ratio, works only on SDK version 26 and above
-AndroidPip.configureAspectRatio(width, height) 
+AndroidPip.configureAspectRatio(width, height) // Example: AndroidPip.configureAspectRatio(2, 4)
 
 
 // When enabled, PIP mode will be automatically entered when app is unfocused( User presses home, menu button etc)
