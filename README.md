@@ -38,7 +38,7 @@ react-native link react-native-android-pip
   	```
 3. Insert the following lines inside the dependencies block in `android/app/build.gradle`:
   	```
-      compile project(':react-native-android-pip')
+      implements project(':react-native-android-pip')
   	```
 
 
@@ -53,7 +53,7 @@ import AndroidPip from 'react-native-android-pip';
 AndroidPip.enterPictureInPictureMode() 
 
 //Configure aspect ratio, works only on SDK version 26 and above
-AndroidPip.configureAspectRatio(width, height) 
+AndroidPip.configureAspectRatio(width, height) // Example: AndroidPip.configureAspectRatio(2, 4)
 
 
 // When enabled, PIP mode will be automatically entered when app is unfocused( User presses home, menu button etc)
