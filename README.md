@@ -60,5 +60,22 @@ AndroidPip.configureAspectRatio(width, height) // Example: AndroidPip.configureA
 AndroidPip.enableAutoPipSwitch()
 AndroidPip.disableAutoPipSwitch()
 
+// Listen for changes to PIP status (eg has user chosen to return to app)
+const eventListener = useRef(null);
+useEffect(() => {
+AndroidPip.startModeChangeListener();
+const eventEmitter = new NativeEventEmitter(AndroidPip);
+eventListener.current = eventEmitter.addListener(
+	'onPictureInPictureModeChanged',
+	event => {
+		console.log('onPictureInPictureModeChanged - In PIP?', event.isInPiPMode);
+	},
+);
+return () => {
+	//make sure to unsubscribe when unmounting your component
+	eventListener.current.remove();
+};
+}, []); 
+
 ```
   
