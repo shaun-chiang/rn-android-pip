@@ -36,6 +36,6 @@ repositories {
 
 dependencies {
     implementation 'com.facebook.react:react-native:+'
-    implementation 'androidx.lifecycle:lifecycle-extensions:+'
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.+'
 }
   
